@@ -6,21 +6,30 @@
 //= require_tree ./channels
 
 (function() {
-  this.App || (this.App = {});
+    this.App || (this.App = {});
 
-  App.cable = ActionCable.createConsumer();
+    App.cable = ActionCable.createConsumer();
 
 }).call(this);
 
-App.messages = App.cable.subscriptions.create('LiveChannel', {
-  received(data) {
-    // This is called when the client subscribes to the Ac server/channel
-    // The #subscribed method on the server side is called.
-  	$('#online').text(data.count);
-  },
 
-  speak() {
-    // When this method is called, the speak method on the channel is called.
-    this.perform('speak')
-  }
+App.messages = App.cable.subscriptions.create('LiveChannel', {
+    received(data) {
+    // This is the callback for all data pushed by Server on LiveChannel
+    switch (data.action) {
+        case "game_start":
+            console.log(data);
+            break;
+        case "move":
+            console.log(data);
+            break;
+        case "notify":
+            console.log(data);
+            break;
+    }
+},
+
+makeMove(data) {
+    this.perform('make_move', data);
+}
 });

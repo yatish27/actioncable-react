@@ -3,6 +3,8 @@ redis: &redis
   adapter: redis
   url: redis://localhost:6379/1
 
-production: *redis
+production:
+  adapter: redis
+  url: redis://redistogo:579ef1088e0772b7ff558e942e508d79@viperfish.redistogo.com:10359/
 development: *redis
 test: *redis

@@ -2,9 +2,9 @@ source 'https://rubygems.org'
 
 gem 'rails', '>= 5.0.0.rc1', '< 5.1'
 
-gem 'sqlite3'
-
 gem 'puma', '~> 3.0'
+
+gem 'pg'
 
 gem 'jquery-rails'
 gem 'sprockets-rails'
