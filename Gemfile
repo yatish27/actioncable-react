@@ -12,6 +12,8 @@ gem 'sass-rails', '>= 5.0.3'
 gem 'uglifier', '>= 2.7.1'
 gem 'turbolinks', github: "rails/turbolinks"
 
+gem 'react-rails'
+
 gem "redis"
 
 group :development, :test do

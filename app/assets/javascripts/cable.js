@@ -6,30 +6,30 @@
 //= require_tree ./channels
 
 (function() {
-    this.App || (this.App = {});
+  this.App || (this.App = {});
 
-    App.cable = ActionCable.createConsumer();
+  App.cable = ActionCable.createConsumer();
 
 }).call(this);
 
 
-App.messages = App.cable.subscriptions.create('LiveChannel', {
-    received(data) {
+App.messages = App.cable.subscriptions.create('GameChannel', {
+  received(data) {
     // This is the callback for all data pushed by Server on LiveChannel
     switch (data.action) {
-        case "game_start":
-            console.log(data);
-            break;
-        case "move":
-            console.log(data);
-            break;
-        case "notify":
-            console.log(data);
-            break;
+      case "game_start":
+      console.log(data);
+      break;
+      case "move":
+      console.log(data);
+      break;
+      case "notify":
+      console.log(data);
+      break;
     }
-},
+  },
 
-makeMove(data) {
+  makeMove(data) {
     this.perform('make_move', data);
-}
+  }
 });

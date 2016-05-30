@@ -1,4 +1,4 @@
-class LiveChannel < ApplicationCable::Channel
+class GameChannel < ApplicationCable::Channel
   # def subscribed
   #   stream_from 'traffic'
   #

@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   mount ActionCable.server => '/cable'
 
-  resources :welcome, only: [:index]
-  root 'welcome#index'
+  resources :game, only: [:index]
+  root 'game#index'
 end
