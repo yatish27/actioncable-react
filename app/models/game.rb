@@ -2,8 +2,8 @@ class Game
   def self.start(player1, player2)
     cross, nought = [player1, player2].shuffle
 
-    ActionCable.server.broadcast "player_#{cross}", {action: "game_start", player_type: "cross"}
-    ActionCable.server.broadcast "player_#{nought}", {action: "game_start", player_type: "nought"}
+    ActionCable.server.broadcast "player_#{cross}", {action: "game_start", player: "X"}
+    ActionCable.server.broadcast "player_#{nought}", {action: "game_start", player: "O"}
 
     ActionCable.server.broadcast "player_#{cross}", {action: "notify", msg: "Play your move!!"}
     ActionCable.server.broadcast "player_#{nought}", {action: "notify", msg: "Waiting for opponent to Play!!"}
@@ -14,7 +14,7 @@ class Game
 
   def self.make_move(uuid, data)
     opponent =  REDIS.get("opponent_for:#{uuid}")
-    ActionCable.server.broadcast "player_#{opponent}", {action: "move", move: data['move']}
+    ActionCable.server.broadcast "player_#{opponent}", {action: "move", position: data['position'], player: data['player']}
 
     ActionCable.server.broadcast "player_#{opponent}", {action: "notify", msg: "Play your move!!"}
     ActionCable.server.broadcast "player_#{uuid}", {action: "notify", msg: "Waiting for opponent to Play!!"}
