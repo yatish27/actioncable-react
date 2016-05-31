@@ -13,3 +13,42 @@
  *= require_tree .
  *= require_self
  */
+
+#container {
+    margin: 0px auto;
+    width: 500px;
+}
+
+#game, #game * {
+    box-sizing: content-box;
+}
+
+#game {
+    width: 300px;
+    height: 300px;
+    padding: 0;
+    margin: 0;
+    float: left;
+    outline: 1px solid #b4b4b4;
+}
+
+#game .tile {
+    width: 100px;
+    height: 100px;
+    outline: 1px solid #b4b4b4;
+    float: left;
+    line-height: 88px;
+    text-align: center;
+    font-size: 50px;
+}
+
+#menu {
+    height: 306px;
+    width: 150px;
+    padding-left: 35px;
+    float: left;
+}
+
+.hidden {
+    display: none;
+}
