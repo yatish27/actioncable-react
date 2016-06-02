@@ -7,7 +7,7 @@ class Board extends React.Component {
         '-', '-', '-',
         '-', '-', '-'
       ],
-      msg: 'Waiting to connect'
+      msg: 'Waiting for another player to join...'
     }
   }
 
@@ -16,19 +16,20 @@ class Board extends React.Component {
   }
 
   tileClickHandler(position) {
-    let tiles = this.state.tiles
-    tiles[position] = this.state.player
-    this.setState({tiles: tiles})
-    App.messages.makeMove({position: position, player: this.state.player})
+  	this.updateBoard(position, this.state.player);
+
+    App.messages.makeMove({position: position, player: this.state.player});
+
+    this.updateMsg('Waiting for opponent to Play!!')
   }
 
   setPlayer(player) {
-    this.setState({player: player})
+    this.setState({player: player});
   }
 
   updateBoard(position, player) {
     let tiles = this.state.tiles
-    tiles[Number(position)] = player
+    tiles[parseInt(position)] = player
 
     this.setState({tiles: tiles})  
   }
@@ -42,16 +43,15 @@ class Board extends React.Component {
       received(data) {
         switch (data.action) {
           case "game_start":
-            console.log(data)
+          	console.log('The game has started. You have been assigned a player.')
+          	console.log(data)
             this.setPlayer(data.player)
+            this.updateMsg(data.msg)
             break;
           case "move":
-            console.log("Received move from other player")
-            console.log(data);
+            console.log("A move from opponent is received.")
+            console.log(data)
             this.updateBoard(data.position, data.player)
-            break;
-          case "notify":
-            console.log(data);
             this.updateMsg(data.msg)
             break;
         }
@@ -68,32 +68,19 @@ class Board extends React.Component {
   }
 
   render () {
-    let playerType
-    let msg
-
-    if (this.state.player != undefined) {
-      playerType = (
-        <div>
-          You are {this.state.player}
-        </div>);
-    }
-
-    if (this.state.msg != undefined) {
-      msg = (
-        <div>
-          {this.state.msg}
-        </div>);
-    }
-
     return (
-      <div id ='board'>
-        { playerType }
-        { msg }
-        { this.state.tiles.map(function(tile, index) {
-          return (
-            <Tile state={tile} key={index} position={index} tileClickHandler={this.tileClickHandler.bind(this)} />
-            )
-        }, this) }
+      <div>
+      	<p>	You are player: {this.state.player} </p>
+
+      	<p> {this.state.msg} </p>
+
+        <div id ='game'>
+          { this.state.tiles.map(function(tile, index) {
+            return (
+              <Tile state={tile} key={index} position={index} tileClickHandler={this.tileClickHandler.bind(this)} />
+              )
+          }, this) }
+        </div>
       </div>
     )
   }

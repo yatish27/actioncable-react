@@ -4,7 +4,7 @@
  *
  * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
  * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
+ * #E53A40
  * You're free to add application-wide styles to this file and they'll appear at the bottom of the
  * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
  * files in this directory. Styles in this file should be added after the last require_* statement.
@@ -13,3 +13,37 @@
  *= require_tree .
  *= require_self
  */
+
+body {
+    text-align: center;
+}
+
+h1 {
+    font-size: 36px;
+    color: #E53A40;
+}
+
+p {
+    font-size: 22px;
+}
+
+
+#game {
+    width: 300px;
+    height: 300px;
+    padding: 0;
+    margin: 0 auto;
+    //float: left;
+    outline: 1px solid #b4b4b4;
+}
+
+#game .tile {
+    width: 100px;
+    height: 100px;
+    outline: 1px solid #b4b4b4;
+    float: left;
+    line-height: 88px;
+    text-align: center;
+    font-size: 60px;
+    color: #47b8e0
+}

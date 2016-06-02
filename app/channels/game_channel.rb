@@ -1,5 +1,4 @@
 class GameChannel < ApplicationCable::Channel
-
   def subscribed
     stream_from "player_#{uuid}"
     puts "Player #{uuid} has just joined"
@@ -9,11 +8,9 @@ class GameChannel < ApplicationCable::Channel
 
   def unsubscribed
     Seek.remove(uuid)
-    # TODO update redis with other player
   end
 
   def make_move(data)
     Game.make_move(uuid, data)
-  end
-    
+  end    
 end
