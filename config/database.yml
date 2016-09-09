@@ -1,15 +1,5 @@
 development:
-  adapter: postgresql
-  encoding: unicode
-  database: actioncable-react_development
+  adapter: sqlite3
+  database: db/development.sqlite3
   pool: 5
-  username: postgres
-  password:
-
-test:
-  adapter: postgresql
-  encoding: unicode
-  database: actioncable-react_test
-  pool: 5
-  username: postgres
-  password:
+  timeout: 5000

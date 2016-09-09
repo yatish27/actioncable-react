@@ -4,7 +4,7 @@ gem 'rails', '>= 5.0.0.rc1', '< 5.1'
 
 gem 'puma', '~> 3.0'
 
-gem 'pg'
+gem 'sqlite3', '~> 1.3' 
 
 gem 'jquery-rails'
 gem 'sprockets-rails'
